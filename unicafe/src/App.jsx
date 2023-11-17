@@ -6,12 +6,6 @@ const Button = (props) => {
   )
 }
 
-const Display = ({rating, quantity}) => {
-  return (
-    <p>{rating} {quantity}</p>
-  )
-}
-
 const Statistics = ({good, neutral, bad}) => {
   const all = good + neutral + bad
   const average = (good - bad) / all
