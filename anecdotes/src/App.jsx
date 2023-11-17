@@ -3,6 +3,15 @@ import { useState } from 'react'
 const Button = (props) => 
   <button onClick={props.handleClick}>{props.text}</button>
 
+const MostVoted = ({anecdotes, voted}) => {
+  const mostVotes = Math.max(...voted)
+  let index = voted.indexOf(mostVotes)
+  const mostVoted = anecdotes[index]
+  return (
+    <p>{mostVoted}</p>
+  )
+}
+
 const App = () => {
   const anecdotes = [
     'If it hurts, do it more often.',
@@ -14,7 +23,7 @@ const App = () => {
     'Programming without an extremely heavy use of console.log is same as if a doctor would refuse to use x-rays or blood tests when diagnosing patients.',
     'The only way to go fast, is to go well.'
   ]
-   
+  
   const [selected, setSelected] = useState(0)
   const [voted, setVoted] = useState(Array(8).fill(0))
   const copy = [...voted]
@@ -40,6 +49,8 @@ const App = () => {
       <p>has {copy[selected]} </p>
       <Button handleClick={getRandomAnecdote} text="next anecdote"/>
       <Button handleClick={vote} text="vote" />
+      <h1>Anecdote with the most votes</h1>
+      <MostVoted anecdotes={anecdotes} voted={copy} />
     </div>
   )
 }
