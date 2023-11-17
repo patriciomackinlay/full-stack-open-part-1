@@ -28,10 +28,21 @@ const Statistics = ({good, neutral, bad}) => {
   return (
     <div className="stats">
       <h1>Statistics</h1>
-      <p>all {all}</p>
-      <p>average {average}</p>
-      <p>positive {positivePercentage} %</p>
+      <StatisticsLine text="all" value={all} />
+      <StatisticsLine text="average" value={average} />
+      <StatisticsLine text="positive" value={positivePercentage} />
     </div>
+  )
+}
+
+const StatisticsLine = (props) => {
+  if (props.text === "positive") {
+    return (
+      <p>{props.text} {props.value} %</p>
+    )
+  }
+  return (
+    <p>{props.text} {props.value}</p>
   )
 }
 
